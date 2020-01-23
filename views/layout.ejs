@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Hotel</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <nav class="nav nav-tabs">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/rooms">Rooms</a>
+      <a class="nav-link" href="/users">Users</a>   
+
+      <% if (loggedIn) { %>
+        <a class="nav-link" href="<%=`/users/${currentUser._id}`%>"> <%= currentUser.name %></a>
+        <a class="nav-link" href="/users/logout">Log out</a>
+      </p>
+      <%} else {%>
+      <a class="nav-link" href="/users/login">Log In</a>
+      <a class="nav-link" href="/users/new">Sign up</a>
+      <% } %>
+
+    </nav>
+
+    <div>
+      <% if (flashMessages) { %> <% if (flashMessages.success) { %>
+      <div class="alert alert-success"><%= flashMessages.success %></div>
+      <% } else if (flashMessages.error) { %>
+      <div class="alert alert-danger"><%= flashMessages.error %></div>
+      <% } %> <% } %>
+    </div>
+
+    <%- body %>
+
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<div class="container">
+  <h2>Rooms Table</h2>
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Floor</th>
+        <th>Room Number</th>
+        <th>Price</th>
+        <th>Check In Date</th>
+        <th>Check Out Date</th>
+        <% if(currentUser && currentUser.isAdmin){ %>
+        <th>Edit</th>
+        <th>Delete</th>
+        <% } %>
+        <th>Book</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rooms.forEach(room => { %>
+      <tr>
+        <td>
+          <a href="<%= `/rooms/${room._id}` %>">
+            <%= room.floor %>
+          </a>
+        </td>
+        <td>
+          <%= room.roomNumber %>
+        </td>
+        <td>
+          <%= room.price %>
+        </td>
+        <td>
+          <% let checkInDate = new Date(room.checkInDate).toDateString() %> <%=
+          checkInDate %>
+        </td>
+        <td>
+          <% let checkOutDate = new Date(room.checkOutDate).toDateString() %>
+          <%= checkOutDate %>
+        </td>
+        <% if(currentUser && currentUser.isAdmin){ %>
+        <td>
+          <a href="<%= `rooms/${room._id}/edit` %>">
+            Edit
+          </a>
+        </td>
+        <td>
+          <a
+            href="<%= `rooms/${room._id}/delete?_method=DELETE` %>"
+            onclick="return confirm('Are you sure you want to delete this room?')"
+          >
+            Delete
+          </a>
+        </td>
+        <% } %>
+        <td>
+          <% if(!room.user) { %>
+          <a href="<%= `/rooms/${room._id}/book` %>" class="btn btn-primary">
+            Book
+          </a>
+          <% } else { %> Room Booked <% } %>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <% if(currentUser && currentUser.isAdmin) { %>
+  <a href="/rooms/new" class="btn btn-primary">New Room</a>
+  <% } %>
+</div>

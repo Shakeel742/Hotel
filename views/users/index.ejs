@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Users Table</h2>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(user => { %>
+      <tr>
+        <td>
+          <a href="<%=`/users/${user._id}`%>">
+            <%= user.name %>
+          </a>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>

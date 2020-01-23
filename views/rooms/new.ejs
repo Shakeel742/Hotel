@@ -1,0 +1,65 @@
+<div class="container">
+  <h2>New Room:</h2>
+  <form action="/rooms/create" method="POST">
+    <div class="form-group">
+      <label for="floor">Floor</label>
+      <input
+        type="number"
+        name="floor"
+        placeholder="Floor"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="roomNumber">Room Number</label>
+      <input
+        type="number"
+        name="roomNumber"
+        placeholder="Room Number"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        name="price"
+        placeholder="Price"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="checkInDate">Check in date</label>
+      <input
+        type="date"
+        name="checkInDate"
+        placeholder="Check in date"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="checkOutDate">Check out date</label>
+      <input
+        type="date"
+        name="checkOutDate"
+        placeholder="Check out date"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <input
+      type="submit"
+      name="submit"
+      class="btn btn-primary"
+      class="form-control"
+    />
+  </form>
+</div>

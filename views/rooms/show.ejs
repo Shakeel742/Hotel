@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>
+    Room data for room number: <%= room.roomNumber %>
+  </h2>
+
+  <table class="table">
+    <tr>
+      <th>Floor:</th>
+      <td>
+        <%= room.floor %>
+      </td>
+    </tr>
+    <tr>
+      <th>Room Number:</th>
+      <td>
+        <%= room.roomNumber %>
+      </td>
+    </tr>
+    <tr>
+      <th>Price:</th>
+      <td>
+        <%= room.price %>
+      </td>
+    </tr>
+    <tr>
+      <th>Check In Date:</th>
+      <td>
+        <% let checkInDate = new Date(room.checkInDate).toDateString() %> <%=
+        checkInDate %>
+      </td>
+    </tr>
+    <tr>
+      <th>Check Out Date:</th>
+      <td>
+        <% let checkOutDate = new Date(room.checkOutDate).toDateString() %> <%=
+        checkOutDate %>
+      </td>
+    </tr>
+  </table>
+
+  <% if(currentUser && currentUser.isAdmin) { %>
+
+  <a href="/rooms" class="btn btn-primary">View all rooms</a>
+
+  <a href="<%=`/rooms/${room._id}/edit`%>" class="btn btn-primary">
+    Edit Room Details
+  </a>
+
+  <a
+    href="<%= `/rooms/${room._id}/delete?_method=DELETE` %>"
+    onclick="return confirm('Are you sure you want to delete this room?')"
+    class="btn btn-danger"
+  >
+    Delete Room
+  </a>
+
+  <% } %>
+</div>

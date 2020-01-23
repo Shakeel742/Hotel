@@ -1,0 +1,97 @@
+<% let isUsersAccount = loggedIn && currentUser._id.toString() ===
+user._id.toString() %>
+<div class="container">
+  <h1>
+    <% if(user.isAdmin) { %> Admin <% } else { %> User <% } %>
+    <br />
+    Data for <%= user.name %>
+  </h1>
+
+  <table class="table">
+    <tr>
+      <th>Name:</th>
+      <td>
+        <%= user.name %>
+      </td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>
+        <%= user.email %>
+      </td>
+    </tr>
+  </table>
+
+  <a href="/users" class="btn btn-primary">View all users</a>
+
+  <% if(isUsersAccount) { %>
+
+  <a href="<%=`/users/${user._id}/edit`%>" class="btn btn-primary">
+    Edit User Details
+  </a>
+
+  <a
+    href="<%=`/users/${user._id}/delete?_method=DELETE`%>"
+    onclick="return confirm('Are you sure you want to delete this Account?')"
+    class="btn btn-danger"
+  >
+    Delete Account
+  </a>
+  <% } %>
+
+  <hr />
+
+  <h3>Booked Rooms:</h3>
+  <table class="table">
+    <thead class="thead-light">
+      <th>Floor</th>
+      <th>Room Number</th>
+      <th>Price</th>
+      <th>Check In Date</th>
+      <th>Check Out Date</th>
+      <% if(currentUser && currentUser.isAdmin) { %>
+      <th>Delete Booking</th>
+      <% } %>
+    </thead>
+    <tbody>
+      <% rooms.rooms.forEach(room => { %>
+      <tr>
+        <td>
+          <%= room.floor %>
+        </td>
+        <td>
+          <%= room.roomNumber %>
+        </td>
+        <td>
+          <%= room.price %>
+        </td>
+        <td>
+          <% let checkInDate = new Date(room.checkInDate).toDateString() %> <%=
+          checkInDate %>
+        </td>
+        <td>
+          <% let checkOutDate = new Date(room.checkOutDate).toDateString() %>
+          <%= checkOutDate %>
+        </td>
+        <% if(currentUser && currentUser.isAdmin) { %>
+        <td>
+          <form
+            action="<%=`/users/${user._id}/deleteBooking?_method=PUT`%>"
+            method="POST"
+          >
+            <input type="hidden" name="roomId" value="<%= room._id %>" />
+            <button
+              type="submit"
+              onclick="return confirm('Delete this booking?')"
+              class="btn btn-primary"
+            >
+              Delete Booking
+            </button>
+          </form>
+        </td>
+        <% } %>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
