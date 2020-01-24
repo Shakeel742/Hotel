@@ -18,4 +18,4 @@ Admin users can:
 * Delete bookings
 
 Technologies used:
-Node, Express, MongoDB, ejs, JavaScript, Mongoose, Passport, Passport-Local Mongoose, Bootstrap.
+Node, Express, MongoDB, ejs, Mongoose, Passport, Passport-Local Mongoose, Bootstrap.
