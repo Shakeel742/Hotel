@@ -1,4 +1,4 @@
-# Hotel Reservation Application
+# Hotel Reservation Web Application
 
 Guests can:
 * Browse rooms
